@@ -1,0 +1,6 @@
+#index-main-frame {
+  /* 水平居中 */
+  text-align: center;
+  /* 垂直偏移 */
+  padding-top: 30vh;
+}
