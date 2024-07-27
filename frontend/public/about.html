@@ -6,6 +6,66 @@
     <title>关于这个工程</title>
   </head>
   <body>
-    About Page
+    <div>
+      <div>
+        <div>
+          <img src="./assets/EESAST2024.jpg" alt="EESAST 2024" title="EESAST 2024" width="330" height="185"/>
+          <hr />
+          <div>
+            <form method="post" action="#">
+              <h3>联系我们</h3>
+              <p>
+                称呼：<input name="name" type="text" required />
+              </p>
+              <p>
+                邮箱：<input name="email" type="email" required />
+              </p>
+              <p>院系：
+                <input type="radio" value="无" name="department" required/>电子系
+                <input type="radio" value="软" name="department" required/>软件学院
+                <input type="radio" value="其他" name="department" required disabled/>其他
+              </p>
+              <p>反馈意见：<br /><br />
+                <textarea name="textarea" rows="5" cols="36" required></textarea>
+              </p>
+              <p>附件
+                <input type="file" name="files">
+              </p>
+              <p>
+                <input type="submit" name="submit" value="提交"/>
+                <input type="reset" name="reset" value="重填"/>
+              </p>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <h3>我们是电子系学生科协</h3>
+          <table border="1px">
+            <tr>
+              <th>官网</th>
+              <td><a href="https://eesast.com" target="_blank"><em>eesast.com</em></a></td>
+            </tr>
+            <tr>
+              <th>GitHub仓库</th>
+              <td><a href="https://github.com/eesast" target="_blank"><em>github.com/eesast</em></a></td>
+            </tr>
+          </table>
+          <h3>本项目是暑培(网站部分)的学习性工程</h3>
+          <ul>
+            <li><strong>主题</strong>：一个趣味会议软件</li>
+            <li><strong>功能需求</strong>：用户创建和登录、会议创建和加入、会议中倒计时、随机点名等</li>
+          </ul>
+          <h3>这个工程分为6个循序渐进的部分</h3>
+          <ol>
+            <li>HTML&CSS</li>
+            <li>JS&TS</li>
+            <li>DataBase (SQL&GraphQL)</li>
+            <li>Backend (NodeJS&Express)</li>
+            <li>Frontend (React&Webpack)</li>
+            <li>Deployment (CI/CD&Server)</li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
