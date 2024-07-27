@@ -16,6 +16,8 @@
   /* 垂直居中 */
   display: flex;
   align-items: center;
+  /* 好看的渐变色网站：https://color.oulu.me/ */
+  background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 }
 
 #outer {
@@ -33,4 +35,30 @@
   margin-left: 12px;
   width: 334px;
   display: inline-block;
+}
+
+.card {
+  padding: 12px;
+  /* 圆角矩形 */
+  border-radius: 8px;
+  /* 毛玻璃特效 */
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+#img {
+  padding: 0;
+}
+
+.styled-table {
+  border-collapse: collapse;
+}
+
+.styled-table th, td {
+  padding: 12px;
+}
+
+.styled-list li {
+  line-height: 2em;
 }
