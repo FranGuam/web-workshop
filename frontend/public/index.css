@@ -4,3 +4,33 @@
   /* 垂直偏移 */
   padding-top: 30vh;
 }
+
+#main-background-music {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+}
+
+#about-main-frame {
+  height: 100%;
+  /* 垂直居中 */
+  display: flex;
+  align-items: center;
+}
+
+#outer {
+  width: 700px;
+  display: flex;
+  margin: 0 auto;
+}
+
+#left {
+  width: 330px;
+  display: inline-block;
+}
+
+#right {
+  margin-left: 12px;
+  width: 334px;
+  display: inline-block;
+}

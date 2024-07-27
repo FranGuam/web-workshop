@@ -4,11 +4,18 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png" />
     <title>关于这个工程</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+      }
+    </style>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <div>
-      <div>
-        <div>
+    <div id="about-main-frame">
+      <div id="outer">
+        <div id="left">
           <img src="./assets/EESAST2024.jpg" alt="EESAST 2024" title="EESAST 2024" width="330" height="185"/>
           <hr />
           <div>
@@ -38,7 +45,7 @@
             </form>
           </div>
         </div>
-        <div class="card">
+        <div id="right">
           <h3>我们是电子系学生科协</h3>
           <table border="1px">
             <tr>
