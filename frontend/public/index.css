@@ -21,6 +21,12 @@
   background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 }
 
+#aboutme-main-frame{
+  height: 200%;
+  align-items:center;
+  display:list-item;
+  background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
 #outer {
   width: 700px;
   display: flex;
@@ -38,6 +44,20 @@
   display: inline-block;
 }
 
+#info{
+  margin-left: 12px;
+  width: 500px;
+  display:inline-block;
+  align-content: center;
+}
+
+#contact{
+  margin-left: 12px;
+  width: 500px;
+  display:inline-block;
+  align-content: center; 
+}
+
 .card {
   padding: 12px;
   /* 圆角矩形 */
@@ -52,6 +72,14 @@
   padding: 0;
 }
 
+
+.image{
+  width: 5%;
+  height: 5%;
+  margin: 20px;
+}
+
+
 .styled-table {
   border-collapse: collapse;
 }
@@ -62,6 +90,34 @@
 
 .styled-list li {
   line-height: 2em;
+}
+
+.light-color-theme{
+  height: 200%;
+  align-items:center;
+  display:list-item;
+  background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.dark-color-theme{
+  height: 200%;
+  align-items:center;
+  display:list-item;
+  background: linear-gradient(to top, #0c25de 0%, #d307fc 100%);
+}
+
+.theme-button{
+  margin:20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Microsoft YaHei','Arial','sans-serif';
+}
+
+.fetch-button{
+  margin:20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Microsoft YaHei','Arial','sans-serif';
 }
 
 #clock {
