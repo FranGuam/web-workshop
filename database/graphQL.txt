@@ -1,0 +1,15 @@
+mutation InsertMessage {
+  insert_message(objects: {
+    content: "回复上一条消息",
+    user_uuid: "00000000-0000-0000-0000-000000000001",
+    room_uuid: "00000000-0000-0000-0000-100000000001",
+    reply_to: "39ba5cc7-9f59-4129-b126-b7912840f67a"
+  }) {
+    returning {
+      uuid
+      content
+      created_at
+      reply_to
+    }
+  }
+}

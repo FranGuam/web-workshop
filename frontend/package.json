@@ -15,7 +15,7 @@
     "react-router-dom": "6.26.1"
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0",
+    "@craco/craco": "7.1.0",
     "@types/md5": "2.3.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
@@ -32,8 +32,7 @@
     "build": "craco build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
-    "electron": "electron .",
-    "electron:dev": "electron . dev",
+    "electron": "yarn build && electron .",
     "electron:build": "electron-builder"
   },
   "eslintConfig": {
@@ -69,21 +68,6 @@
         "portable"
       ]
     },
-    "mac": {
-      "target": [
-        "dmg",
-        "zip"
-      ]
-    },
-    "linux": {
-      "maintainer": "EESAST",
-      "target": [
-        "AppImage",
-        "deb",
-        "rpm",
-        "tar.gz"
-      ]
-    },
     "nsis": {
       "shortcutName": "EESAST",
       "oneClick": false,
@@ -93,18 +77,21 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true
     },
-    "dmg": {
-      "contents": [
-        {
-          "x": 0,
-          "y": 0,
-          "path": "/Application"
-        }
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
       ]
     },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ]
+    "linux": {
+      "category": "Utility",
+      "maintainer": "EESAST",
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "tar.gz"
+      ]
+    }
   }
 }

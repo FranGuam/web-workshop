@@ -38,6 +38,10 @@ app.all("*", (req, res, next) => {
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
 app.use("/user", userRouter);
 app.use("/file", fileRouter);
 app.use("/email", emailRouter);

@@ -2,7 +2,8 @@ name: electron
 
 on:
   push:
-    branches: [ main ]
+    tags:
+      - v*
 
 permissions:
   contents: write
@@ -16,9 +17,23 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-      fail-fast: false
+        include:
+          - os: ubuntu-latest
+            output-file: |
+              ./frontend/electron/*.AppImage
+              ./frontend/electron/*.deb
+              ./frontend/electron/*.rpm
+              ./frontend/electron/*.tar.gz
+          - os: windows-latest
+            output-file: |
+              ./frontend/electron/*.exe
+          - os: macos-latest
+            output-file: |
+              ./frontend/electron/*.dmg
+              ./frontend/electron/*.zip
 
     steps:
       - name: Checkout repository
@@ -41,21 +56,11 @@ jobs:
           yarn build
           yarn electron:build
 
-      - name: Cleanup Artifacts for Windows
-        if: matrix.os == 'windows-latest'
-        run: |
-          npx rimraf "./electron/!(*.exe)"
-
-      - name: Cleanup Artifacts for MacOS
-        if: matrix.os == 'macos-latest'
-        run: |
-          npx rimraf "./electron/!(*.dmg)"
-
       - name: Upload executables for publish
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact-${{ matrix.os }}
-          path: ./frontend/electron
+          path: ${{ matrix.output-file }}
 
   release:
     runs-on: ubuntu-latest
@@ -72,7 +77,7 @@ jobs:
       - name: Deploy to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
-          files: "./dist/*"
+          files: ./dist/*
           name: Release ${{ github.ref_name }}
           generate_release_notes: true
           prerelease: true
