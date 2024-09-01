@@ -1,6 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import { sdk as graphql } from "./index";
+import changePasswordRouter from "./changePassword";
 
 interface userJWTPayload {
   uuid: string;
@@ -70,5 +71,8 @@ router.post("/register", async (req, res) => {
     return res.sendStatus(500);
   }
 });
+
+router.post("/change-password/request", changePasswordRouter);
+router.post("/change-password/action", changePasswordRouter);
 
 export default router;

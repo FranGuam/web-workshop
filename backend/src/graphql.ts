@@ -1569,6 +1569,14 @@ export type GetUsersByUsernameQueryVariables = Exact<{
 
 export type GetUsersByUsernameQuery = { __typename?: 'query_root', user: Array<{ __typename?: 'user', uuid: any, password: string }> };
 
+export type UpdateUserPasswordMutationVariables = Exact<{
+  uuid: Scalars['uuid']['input'];
+  password: Scalars['String']['input'];
+}>;
+
+
+export type UpdateUserPasswordMutation = { __typename?: 'mutation_root', update_user_by_pk?: { __typename?: 'user', uuid: any, password: string } | null };
+
 
 export const AddMessageDocument = gql`
     mutation addMessage($user_uuid: uuid!, $room_uuid: uuid!, $content: String!, $reply_to: uuid) {
@@ -1643,6 +1651,14 @@ export const GetUsersByUsernameDocument = gql`
   }
 }
     `;
+export const UpdateUserPasswordDocument = gql`
+    mutation updateUserPassword($uuid: uuid!, $password: String!) {
+  update_user_by_pk(pk_columns: {uuid: $uuid}, _set: {password: $password}) {
+    uuid
+    password
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1674,6 +1690,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getUsersByUsername(variables: GetUsersByUsernameQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUsersByUsernameQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUsersByUsernameQuery>(GetUsersByUsernameDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUsersByUsername', 'query', variables);
+    },
+    updateUserPassword(variables: UpdateUserPasswordMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UpdateUserPasswordMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UpdateUserPasswordMutation>(UpdateUserPasswordDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateUserPassword', 'mutation', variables);
     }
   };
 }
