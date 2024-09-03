@@ -17,3 +17,22 @@ mutation updateUserPassword($uuid: uuid!, $password: String!){
     password
   }
 }
+
+mutation deleteUser($uuid: uuid!){
+  delete_user_by_pk(uuid: $uuid){
+    uuid
+    username
+  }
+}
+
+mutation deleteUserRoom($uuid: uuid!){
+  delete_user_room(where:{user_uuid:{_eq:$uuid}}){
+    affected_rows
+  }
+}
+
+mutation deleteUserMessage($uuid: uuid!){
+  delete_message(where:{user_uuid:{_eq: $uuid}}){
+    affected_rows
+  }
+}

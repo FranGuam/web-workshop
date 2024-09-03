@@ -1577,6 +1577,27 @@ export type UpdateUserPasswordMutationVariables = Exact<{
 
 export type UpdateUserPasswordMutation = { __typename?: 'mutation_root', update_user_by_pk?: { __typename?: 'user', uuid: any, password: string } | null };
 
+export type DeleteUserMutationVariables = Exact<{
+  uuid: Scalars['uuid']['input'];
+}>;
+
+
+export type DeleteUserMutation = { __typename?: 'mutation_root', delete_user_by_pk?: { __typename?: 'user', uuid: any, username: string } | null };
+
+export type DeleteUserRoomMutationVariables = Exact<{
+  uuid: Scalars['uuid']['input'];
+}>;
+
+
+export type DeleteUserRoomMutation = { __typename?: 'mutation_root', delete_user_room?: { __typename?: 'user_room_mutation_response', affected_rows: number } | null };
+
+export type DeleteUserMessageMutationVariables = Exact<{
+  uuid: Scalars['uuid']['input'];
+}>;
+
+
+export type DeleteUserMessageMutation = { __typename?: 'mutation_root', delete_message?: { __typename?: 'message_mutation_response', affected_rows: number } | null };
+
 
 export const AddMessageDocument = gql`
     mutation addMessage($user_uuid: uuid!, $room_uuid: uuid!, $content: String!, $reply_to: uuid) {
@@ -1659,6 +1680,28 @@ export const UpdateUserPasswordDocument = gql`
   }
 }
     `;
+export const DeleteUserDocument = gql`
+    mutation deleteUser($uuid: uuid!) {
+  delete_user_by_pk(uuid: $uuid) {
+    uuid
+    username
+  }
+}
+    `;
+export const DeleteUserRoomDocument = gql`
+    mutation deleteUserRoom($uuid: uuid!) {
+  delete_user_room(where: {user_uuid: {_eq: $uuid}}) {
+    affected_rows
+  }
+}
+    `;
+export const DeleteUserMessageDocument = gql`
+    mutation deleteUserMessage($uuid: uuid!) {
+  delete_message(where: {user_uuid: {_eq: $uuid}}) {
+    affected_rows
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1693,6 +1736,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     updateUserPassword(variables: UpdateUserPasswordMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UpdateUserPasswordMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<UpdateUserPasswordMutation>(UpdateUserPasswordDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateUserPassword', 'mutation', variables);
+    },
+    deleteUser(variables: DeleteUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DeleteUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteUserMutation>(DeleteUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'deleteUser', 'mutation', variables);
+    },
+    deleteUserRoom(variables: DeleteUserRoomMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DeleteUserRoomMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteUserRoomMutation>(DeleteUserRoomDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'deleteUserRoom', 'mutation', variables);
+    },
+    deleteUserMessage(variables: DeleteUserMessageMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DeleteUserMessageMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteUserMessageMutation>(DeleteUserMessageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'deleteUserMessage', 'mutation', variables);
     }
   };
 }

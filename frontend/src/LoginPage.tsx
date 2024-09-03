@@ -14,10 +14,13 @@ const { Link } = Typography;
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleSumbit = async (values: any) => {
+  const handleSubmit = async (values: any) => {
     try {
-      values.password = md5(values.password);
-      const response = await axios.post("/user/login", values);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/login`, values, {
+        headers: { 
+          "Content-Type": "application/json", 
+        },
+      });
       const { token } = response.data;
       localStorage.setItem("token", token);
       localStorage.setItem("username", values.username);
@@ -31,7 +34,9 @@ const LoginPage: React.FC = () => {
       ) {
         message.info("未找到用户，正在创建新用户");
         try {
-          const response = await axios.post("/user/register", values);
+          const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/register`, values,{
+            headers:{"Content-Type": "application/json",}
+          });
           const { token } = response.data;
           localStorage.setItem("token", token);
           localStorage.setItem("username", values.username);
@@ -59,7 +64,7 @@ const LoginPage: React.FC = () => {
       title="登录账户"
       subTitle="科协暑培(网站部分)学习型工程"
       submitter={{ searchConfig: { submitText: "登录 / 注册" } }}
-      onFinish={handleSumbit}
+      onFinish={handleSubmit}
     >
       <ProFormText
         name="username"

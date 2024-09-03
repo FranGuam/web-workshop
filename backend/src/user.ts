@@ -2,6 +2,7 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import { sdk as graphql } from "./index";
 import changePasswordRouter from "./changePassword";
+import deleteUserRouter from "./deleteUser";
 
 interface userJWTPayload {
   uuid: string;
@@ -15,6 +16,8 @@ const router = express.Router();
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password);
+  //console.log(req);
   if (!username || !password) {
     return res.status(422).send("422 Unprocessable Entity: Missing username or password");
   }
@@ -74,5 +77,6 @@ router.post("/register", async (req, res) => {
 
 router.post("/change-password/request", changePasswordRouter);
 router.post("/change-password/action", changePasswordRouter);
+router.get("/delete", deleteUserRouter);
 
 export default router;
