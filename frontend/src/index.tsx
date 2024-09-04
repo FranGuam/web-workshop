@@ -16,6 +16,8 @@ const MainPanel = React.lazy(() => import("./MainPanel"));
 const LoginPage = React.lazy(() => import("./LoginPage"));
 const ChatBox = React.lazy(() => import("./ChatBox"));
 const FileShare = React.lazy(() => import("./FileShare"));
+const RequestPasswordResetPage = React.lazy(() => import("./RequestPasswordResetPage"));
+const ResetPasswordPage = React.lazy( () => import("./ResetPasswordPage"));
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL!;
 axios.interceptors.request.use((config) => {
@@ -159,6 +161,8 @@ const root = createRoot(domNode!);
 const router = createHashRouter([
   { path: "/login", element: <LoginPage /> },
   { path: "*", element: <App /> },
+  { path: "/user/change-password/request", element: <RequestPasswordResetPage /> },
+  { path: "/user/change-password/reset", element: <ResetPasswordPage /> },
 ]);
 root.render(
   <React.StrictMode>

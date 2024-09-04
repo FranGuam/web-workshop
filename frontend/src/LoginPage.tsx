@@ -1,4 +1,4 @@
-import md5 from "md5";
+//import md5 from "md5";
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { message, Typography } from "antd";
@@ -8,6 +8,8 @@ import {
   ProFormText,
 } from "@ant-design/pro-components";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { getInclusionDirectives } from "@apollo/client/utilities";
+
 
 const { Link } = Typography;
 
@@ -53,7 +55,7 @@ const LoginPage: React.FC = () => {
   };
 
   const handleForgetPassword = () => {
-    message.info("暂未实现");
+    navigate("/user/change-password/request");
   };
 
   return (

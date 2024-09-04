@@ -41,9 +41,11 @@ router.post("/change-password/request", async (req, res) => {
             from: process.env.EMAIL_ADDRESS,
             to: username,
             subject: "Password Reset Request",
-            text: `Please use the following link to reset your password: test.com token=${token}`,
+            text: `Please use the following link to reset your password: localhost:3000/user/change-password/reset
+            your token below : ${'\n'}${token}`
         };
         await transporter.sendMail(mailOptions);
+        console.log(token);
         return res.status(200).send("Reset Email send");
     }catch (err){
         console.error(err);
@@ -58,6 +60,7 @@ router.post("/change-password/action", async (req,res) => {
     }
     try{ 
         try{
+            console.log(jwt.decode(token));
             jwt.verify(token, process.env.JWT_SECRET!);
         }catch(err){
             return res.status(401).send("401 Unauthorized: Invalid token");
